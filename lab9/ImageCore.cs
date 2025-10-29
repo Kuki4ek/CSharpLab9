@@ -13,7 +13,6 @@ namespace lab9
         }
         public static Bitmap Convolution(BufferedBitmap buff_image, Kernel kernel, Rectangle rect)
         {
-            // Создаем результирующее изображение размером с обрабатываемую область
             Bitmap new_bitmap = new Bitmap(rect.Width, rect.Height);
             double[][] cells = kernel.Cells;
             List<(int, int)> pixels = new List<(int, int)>();
@@ -39,7 +38,6 @@ namespace lab9
                         int ii = i + k.Item1;
                         int jj = j + k.Item2;
 
-                        // Правильная обработка границ с отражением
                         if (ii < 0) ii = -ii;
                         if (ii >= buff_image.Width) ii = 2 * buff_image.Width - ii - 2;
                         if (jj < 0) jj = -jj;
@@ -59,8 +57,7 @@ namespace lab9
                     B = Math.Min(255, Math.Max(0, B));
                     Color new_pixel_color = Color.FromArgb(R, G, B);
 
-                    // Устанавливаем пиксель относительно области rect
-                    new_bitmap.SetPixel(i - rect.X, j - rect.Y, new_pixel_color);
+                    new_bitmap.SetPixel(i - rect.X, j - rect.Y, new_pixel_color); // Если реализовывать это через BufferedBitmap, падает производительность
                 }
             }
 
