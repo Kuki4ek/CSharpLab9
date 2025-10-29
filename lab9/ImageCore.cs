@@ -6,12 +6,12 @@ namespace lab9
 {
     public static class ImageCore
     {
-        public static Bitmap Convolution(Bitmap image, Kernel kernel)
+        public static Bitmap Convolution(BufferedBitmap buff_image, Kernel kernel)
         {
-            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
-            return Convolution(image, kernel, rect);
+            Rectangle rect = new Rectangle(0, 0, buff_image.Width, buff_image.Height);
+            return Convolution(buff_image, kernel, rect);
         }
-        public static Bitmap Convolution(Bitmap image, Kernel kernel, Rectangle rect)
+        public static Bitmap Convolution(BufferedBitmap buff_image, Kernel kernel, Rectangle rect)
         {
             // Создаем результирующее изображение размером с обрабатываемую область
             Bitmap new_bitmap = new Bitmap(rect.Width, rect.Height);
@@ -41,11 +41,11 @@ namespace lab9
 
                         // Правильная обработка границ с отражением
                         if (ii < 0) ii = -ii;
-                        if (ii >= image.Width) ii = 2 * image.Width - ii - 2;
+                        if (ii >= buff_image.Width) ii = 2 * buff_image.Width - ii - 2;
                         if (jj < 0) jj = -jj;
-                        if (jj >= image.Height) jj = 2 * image.Height - jj - 2;
+                        if (jj >= buff_image.Height) jj = 2 * buff_image.Height - jj - 2;
 
-                        pixel_color = image.GetPixel(ii, jj);
+                        pixel_color = buff_image.GetPixel(ii, jj);
                         int coeff = kernel.Cells.Length / 2;
                         R += (int)(pixel_color.R * kernel.Cells[k.Item1 + coeff][k.Item2 + coeff]);
                         G += (int)(pixel_color.G * kernel.Cells[k.Item1 + coeff][k.Item2 + coeff]);

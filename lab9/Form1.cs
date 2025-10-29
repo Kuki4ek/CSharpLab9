@@ -97,8 +97,8 @@ namespace lab9
 
                     Rectangle processRect = new Rectangle(0, currentRect.Y - currentCloneRect.Y,
                                                           currentRect.Width, currentRect.Height);
-
-                    Bitmap result = ImageCore.Convolution(image_copy, kernel, processRect);
+                    BufferedBitmap buff_image_copy = new BufferedBitmap(image_copy);
+                    Bitmap result = ImageCore.Convolution(buff_image_copy, kernel, processRect);
 
                     results[index] = result;
 

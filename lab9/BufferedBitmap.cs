@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace lab9
 {
-    unsafe class BufferedBitmap
+    unsafe public class BufferedBitmap
     {
-        //comment
         Bitmap _bmp;
         BitmapData _bd;
         bool _locked;
