@@ -21,7 +21,7 @@ namespace lab9
         public Form1()
         {
             InitializeComponent();
-            image = new Bitmap(@"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab9\lab9\images\image.png");
+            image = new Bitmap(typeof(Form1).Assembly.GetManifestResourceStream("lab9.image.png"));
             pictureBox1.Image = image;
         }
         public Bitmap CombineBitmap(Bitmap up, Bitmap down)
